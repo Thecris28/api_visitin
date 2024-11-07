@@ -13,6 +13,12 @@ export class VisitorDto {
 
   @IsDateString()
   birthdate: string;
+
+  @IsString()
+  phone: string;
+
+  @IsString()
+  email: string;
 }
 
 export class CreateVisitDetailsDto {

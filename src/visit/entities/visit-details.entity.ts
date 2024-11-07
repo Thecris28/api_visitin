@@ -9,6 +9,12 @@ export class Visitor {
   
     @Column('date')
     birthdate: string;
+
+    @Column({nullable: true})
+    phone: string;
+
+    @Column({nullable: true})
+    email: string;
   }
 
 @Entity('visit_details')

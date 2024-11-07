@@ -29,7 +29,7 @@ export class VisitService {
       const { visitor, visit_reason, observations } = visitDetails;
 
       const visitEntity = this.visitDetailsRepository.create({
-        visitor: { name: visitor.name, birthdate: visitor.birthdate},
+        visitor: { name: visitor.name, birthdate: visitor.birthdate, phone: visitor.phone, email: visitor.email },
         visit_reason: visit_reason,
         observations: observations
       });
