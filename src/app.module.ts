@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { VisitModule } from './visit/visit.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true, // cambio en la entidades las sincroniza tambien se puede ejecutar las mjgraciones
     }),
     AuthModule,
+    VisitModule,
   ],
   controllers: [AppController],
   providers: [AppService],

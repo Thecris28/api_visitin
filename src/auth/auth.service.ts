@@ -6,7 +6,6 @@ import { Repository } from 'typeorm';
 import { hashSync, compareSync } from 'bcrypt';
 import { User } from './entities/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
-import { ok } from 'assert';
 
 @Injectable()
 export class AuthService {
