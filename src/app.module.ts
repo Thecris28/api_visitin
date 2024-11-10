@@ -10,6 +10,10 @@ import { VisitModule } from './visit/visit.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
+      ssl: process.env.STAGE==='prod',
+      extra: {
+        ssl: process.env.STAGE==='prod' ? {rejectUnauthorized: false} : null,
+      },
       type: 'postgres',  //aqui cambiar el tipo de base de datos 
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
