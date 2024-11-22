@@ -4,15 +4,18 @@ import {
   IsDateString,
   IsNotEmpty,
   ValidateNested,
+  IsOptional,
 } from 'class-validator';
 
 export class VisitorDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  @IsOptional()
+  name?: string;
 
+  @IsOptional()
   @IsDateString()
-  birthdate: string;
+  birthdate?: string;
 
   @IsString()
   phone: string;
@@ -27,7 +30,8 @@ export class CreateVisitDetailsDto {
   visitor: VisitorDto;
 
   @IsString()
-  visit_reason: string;
+  @IsOptional()
+  visit_reason?: string;
 
   @IsString()
   observations: string;

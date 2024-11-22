@@ -24,7 +24,7 @@ export class VisitController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVisitDto: UpdateVisitDto) {
-    return this.visitService.update(+id, updateVisitDto);
+    return this.visitService.update(id, updateVisitDto);
   }
 
   @Delete(':id')

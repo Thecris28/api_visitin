@@ -65,8 +65,38 @@ export class VisitService {
     });
   }
 
-  update(id: number, updateVisitDto: UpdateVisitDto) {
-    return `This action updates a #${id} visit`;
+  async update(id: string, updateVisitDto: UpdateVisitDto) {
+
+    const visitOld = await this.visitRepository.findOne({
+      where: { id },
+      relations: ['visitDetails'],
+    });
+
+    console.log(visitOld);
+
+    const { visitDetails, ...rest } = updateVisitDto;
+
+    const { visitor, visit_reason, observations } = visitDetails;
+
+   
+    const visit = await this.visitRepository.preload({
+      id: id,
+      ...rest,
+      visitDetails:{ ...visitOld.visitDetails, visitor: { name: visitor.name, birthdate: visitor.birthdate, phone: visitor.phone, email: visitor.email }, visit_reason: visit_reason, observations: observations }
+    });
+
+
+
+    if (!visit) {
+      throw new BadRequestException('Visit not found');
+    }
+
+    try {
+      return await this.visitRepository.save(visit);
+    } catch (error) {
+      this.handleErros(error);
+    }
+    
   }
 
   remove(id: number) {
