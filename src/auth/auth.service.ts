@@ -19,10 +19,17 @@ export class AuthService {
 
     try {
 
-      const { password, ...userData } = createUserDto;
+      const { password,...userData } = createUserDto;
+
+      let { rol } = createUserDto;
+
+      if ( rol === '' ){
+        rol = 'asistente social';
+      }
 
       const user = this.userRepository.create( {
         ...userData,
+        rol,
         password: hashSync( password, 10 ),
       } );
 

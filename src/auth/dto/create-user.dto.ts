@@ -1,4 +1,5 @@
 import { IsEmail, IsString, Matches, MaxLength, Min, MinLength } from "class-validator";
+import { Unique } from "typeorm";
 
 export class CreateUserDto {
 
@@ -12,6 +13,7 @@ export class CreateUserDto {
 
     @IsString()
     @IsEmail()
+    @Unique(['email'])
     email: string;
 
     @IsString()
@@ -22,5 +24,8 @@ export class CreateUserDto {
     message: 'The password must have a Uppercase, lowercase letter and a number'
     })
     password: string;
+
+    @IsString()
+    rol: string;
 
 }
